@@ -1,7 +1,8 @@
-import configuration from "@/const";
-import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import QuestionnaireStep from "@/components/QuestionnaireStep";
+import configuration from "@/app/configuration.json";
+import { QuestionnaireStepType } from "@/types";
+import styles from "./page.module.css";
 
 export function generateStaticParams() {
   const steps = configuration.steps;
@@ -14,7 +15,7 @@ export function generateStaticParams() {
 export default async function QuestionnairePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  const stepData = configuration.steps.find((s) => s.id === slug);
+  const stepData = configuration.steps.find((s) => s.id === slug) as QuestionnaireStepType | undefined;
 
   if (!stepData) {
     notFound();

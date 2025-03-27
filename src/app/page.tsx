@@ -1,4 +1,4 @@
-import configuration from "@/const";
+import configuration from "@/app/configuration.json";
 import { redirect } from "next/navigation";
 
 export default function Home() {

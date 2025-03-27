@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import initialState from "./initialState";
-import { FormDataState } from "@/types/store";
 
 const formDataSlice = createSlice({
   name: "formData",
   initialState,
   reducers: {
-    setFormData: (state, action: PayloadAction<Partial<FormDataState>>) => {
-      return { ...state, ...action.payload };
+    setFormData: (state, action: PayloadAction<{ id: string; value: string }>) => {
+      state[action.payload.id] = action.payload.value;
     },
   },
 });

@@ -1,9 +1,3 @@
-export type Questionnaire = {
-  id: string;
-  title: string;
-  steps: QuestionnaireStepType[];
-};
-
 export type QuestionnaireStepType = {
   id: string;
   screenType: "radioGroup" | "text";

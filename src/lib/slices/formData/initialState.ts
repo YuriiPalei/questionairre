@@ -1,10 +1,5 @@
 import { FormDataState } from "@/types/store";
 
-const initialState: FormDataState = {
-  gender: undefined,
-  relationshipStatus: undefined,
-  isParent: undefined,
-  whereYouHeardAboutUs: undefined,
-};
+const initialState: FormDataState = {};
 
 export default initialState;

@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { ChangeEvent, InputHTMLAttributes } from "react";
 import classNames from "classnames";
 import styles from "./styles.module.css";
 
@@ -10,6 +10,18 @@ type Props = {
 } & Pick<InputHTMLAttributes<HTMLInputElement>, "onChange">;
 
 const RadioGroup = ({ label, options, value, onChange, name }: Props) => {
+  const handleClick = (val: string) => {
+    if (val !== value) return;
+
+    const syntheticEvent = {
+      target: {
+        value: val,
+      },
+    } as ChangeEvent<HTMLInputElement>;
+
+    if (onChange) onChange(syntheticEvent);
+  };
+
   return (
     <div className={styles.container}>
       <h1 id={`${name}-label`}>{label}</h1>
@@ -25,6 +37,7 @@ const RadioGroup = ({ label, options, value, onChange, name }: Props) => {
                 [styles.radio_button__checked]: isChecked,
               })}
               htmlFor={inputId}
+              onClick={() => handleClick(val)}
             >
               <input
                 id={inputId}
