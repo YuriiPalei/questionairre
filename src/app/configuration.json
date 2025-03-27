@@ -8,17 +8,14 @@
       "question": "Select your gender:",
       "options": [
         {
-          "label": "Female",
-          "value": "female"
+          "value": "Female",
+          "target": "relationshipStatus"
         },
         {
-          "label": "Male",
-          "value": "male"
+          "value": "Male",
+          "target": "relationshipStatus"
         }
-      ],
-      "navigation": {
-        "default": "relationshipStatus"
-      }
+      ]
     },
     {
       "id": "relationshipStatus",
@@ -26,18 +23,14 @@
       "question": "So we can get to know you better, tell us about your relationship status.",
       "options": [
         {
-          "label": "Single",
-          "value": "single"
+          "value": "Single",
+          "target": "singleParent"
         },
         {
-          "label": "In a relationship",
-          "value": "inRelationship"
+          "value": "In a relationship",
+          "target": "inRelationshipParent"
         }
-      ],
-      "navigation": {
-        "single": "singleParent",
-        "inRelationship": "inRelationshipParent"
-      }
+      ]
     },
     {
       "id": "singleParent",
@@ -45,17 +38,14 @@
       "question": "Are you a single parent?",
       "options": [
         {
-          "label": "Yes",
-          "value": "yes"
+          "value": "Yes",
+          "target": "singleProblem"
         },
         {
-          "label": "No",
-          "value": "no"
+          "value": "No",
+          "target": "singleProblem"
         }
-      ],
-      "navigation": {
-        "default": "singleProblem"
-      }
+      ]
     },
     {
       "id": "inRelationshipParent",
@@ -63,17 +53,14 @@
       "question": "Are you a parent?",
       "options": [
         {
-          "label": "Yes",
-          "value": "yes"
+          "value": "Yes",
+          "target": "relationshipProblem"
         },
         {
-          "label": "No",
-          "value": "no"
+          "value": "No",
+          "target": "relationshipProblem"
         }
-      ],
-      "navigation": {
-        "default": "relationshipProblem"
-      }
+      ]
     },
     {
       "id": "singleProblem",
@@ -81,21 +68,18 @@
       "question": "Single {gender} {who have children (if have children)} need a slightly different approach to improve their relationship. Which statement best describes you?",
       "options": [
         {
-          "label": "I'm very unhappy with how things are going in my relationship",
-          "value": "veryUnhappy"
+          "value": "I'm very unhappy with how things are going in my relationship",
+          "target": "isTendOverthink"
         },
         {
-          "label": "I'm unhappy with parts of my relationship, but some things are working well",
-          "value": "unhappy"
+          "value": "I'm unhappy with parts of my relationship, but some things are working well",
+          "target": "isTendOverthink"
         },
         {
-          "label": "I'm generally happy in my relationship",
-          "value": "happy"
+          "value": "I'm generally happy in my relationship",
+          "target": "isTendOverthink"
         }
-      ],
-      "navigation": {
-        "default": "isTendOverthink"
-      }
+      ]
     },
     {
       "id": "relationshipProblem",
@@ -103,25 +87,22 @@
       "question": "{Gender} {who have children (if have children)} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
       "options": [
         {
-          "label": "I was unhappy with low things were going in my relationship",
-          "value": "1"
+          "value": "I was unhappy with low things were going in my relationship",
+          "target": "partnerType"
         },
         {
-          "label": "I was unhappy with parts of my relationship, but some thing were working",
-          "value": "2"
+          "value": "I was unhappy with parts of my relationship, but some thing were working",
+          "target": "partnerType"
         },
         {
-          "label": "I was generally happy with my relationship",
-          "value": "3"
+          "value": "I was generally happy with my relationship",
+          "target": "partnerType"
         },
         {
-          "label": "I've never been in a relationship",
-          "value": "4"
+          "value": "I've never been in a relationship",
+          "target": "partnerType"
         }
-      ],
-      "navigation": {
-        "default": "partnerType"
-      }
+      ]
     },
     {
       "id": "isTendOverthink",
@@ -129,18 +110,14 @@
       "question": "Do you tend to overthink?",
       "options": [
         {
-          "label": "Yes",
-          "value": "yes"
+          "value": "Yes",
+          "target": "mostImportant"
         },
         {
-          "label": "No",
-          "value": "no"
+          "value": "No",
+          "target": "mostImportant"
         }
-      ],
-      "navigation": {
-        "yes": "mostImportant",
-        "no": "emotionalControl"
-      }
+      ]
     },
     {
       "id": "mostImportant",
@@ -148,25 +125,22 @@
       "question": "What is most important to you?",
       "options": [
         {
-          "label": "Success",
-          "value": "success"
+          "value": "Success",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Romance",
-          "value": "romance"
+          "value": "Romance",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Stability",
-          "value": "stability"
+          "value": "Stability",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Freedom",
-          "value": "freedom"
+          "value": "Freedom",
+          "target": "whereYouHeardAboutUs"
         }
-      ],
-      "navigation": {
-        "default": "whereYouHeardAboutUs"
-      }
+      ]
     },
     {
       "id": "emotionalControl",
@@ -174,25 +148,22 @@
       "question": "Is emotional control tricky for you?",
       "options": [
         {
-          "label": "Yes",
-          "value": "yes"
+          "value": "Yes",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Sometimes",
-          "value": "sometimes"
+          "value": "Sometimes",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Rarely",
-          "value": "rarely"
+          "value": "Rarely",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Not at all",
-          "value": "NotAtAll"
+          "value": "Not at all",
+          "target": "whereYouHeardAboutUs"
         }
-      ],
-      "navigation": {
-        "default": "whereYouHeardAboutUs"
-      }
+      ]
     },
     {
       "id": "partnerType",
@@ -200,21 +171,18 @@
       "question": "Is your partner an introvert or extrovert?",
       "options": [
         {
-          "label": "Introvert",
-          "value": "introvert"
+          "value": "Introvert",
+          "target": "partnerGender"
         },
         {
-          "label": "Extrovert",
-          "value": "extrovert"
+          "value": "Extrovert",
+          "target": "partnerGender"
         },
         {
-          "label": "A bit of both",
-          "value": "both"
+          "value": "A bit of both",
+          "target": "partnerGender"
         }
-      ],
-      "navigation": {
-        "default": "partnerGender"
-      }
+      ]
     },
     {
       "id": "aboutUs",
@@ -222,13 +190,10 @@
       "question": "So how does it work?",
       "options": [
         {
-          "label": "Next",
-          "value": "next"
+          "value": "Next",
+          "target": "parentGender"
         }
-      ],
-      "navigation": {
-        "default": "parentGender"
-      }
+      ]
     },
     {
       "id": "partnerGender",
@@ -236,17 +201,14 @@
       "question": "What is your partner's gender?",
       "options": [
         {
-          "label": "Female",
-          "value": "female"
+          "value": "Female",
+          "target": "sexPriority"
         },
         {
-          "label": "Male",
-          "value": "male"
+          "value": "Male",
+          "target": "sexPriority"
         }
-      ],
-      "navigation": {
-        "default": "sexPriority"
-      }
+      ]
     },
     {
       "id": "sexPriority",
@@ -255,29 +217,26 @@
       "text": "“My partner and I make sex a priority in our relationship”",
       "options": [
         {
-          "label": "Strongly agree",
-          "value": "stronglyAgree"
+          "value": "Strongly agree",
+          "target": "relationshipGoal"
         },
         {
-          "label": "Agree",
-          "value": "agree"
+          "value": "Agree",
+          "target": "relationshipGoal"
         },
         {
-          "label": "Neutral",
-          "value": "neutral"
+          "value": "Neutral",
+          "target": "relationshipGoal"
         },
         {
-          "label": "Disagee",
-          "value": "disagree"
+          "value": "Disagee",
+          "target": "relationshipGoal"
         },
         {
-          "label": "Strongly disagree",
-          "value": "stronglyDisagree"
+          "value": "Strongly disagree",
+          "target": "relationshipGoal"
         }
-      ],
-      "navigation": {
-        "default": "relationshipGoal"
-      }
+      ]
     },
     {
       "id": "relationshipGoal",
@@ -285,21 +244,18 @@
       "question": "When you think about your relationship goals, you feel...?",
       "options": [
         {
-          "label": "Optimistic! They are totally doable, with some guidance.",
-          "value": "optimistic"
+          "value": "Optimistic! They are totally doable, with some guidance.",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "Cautious. I've struggled before, but I'm hopeful.",
-          "value": "cautious"
+          "value": "Cautious. I've struggled before, but I'm hopeful.",
+          "target": "whereYouHeardAboutUs"
         },
         {
-          "label": "I'm feeling a little anxious, honestly.",
-          "value": "anxious"
+          "value": "I'm feeling a little anxious, honestly.",
+          "target": "whereYouHeardAboutUs"
         }
-      ],
-      "navigation": {
-        "default": "whereYouHeardAboutUs"
-      }
+      ]
     },
     {
       "id": "whereYouHeardAboutUs",
@@ -307,73 +263,70 @@
       "question": "Where did you hear about us?",
       "options": [
         {
-          "label": "Poster or Billboard",
-          "value": "posterOrBillboard"
+          "value": "Poster or Billboard",
+          "target": "done"
         },
         {
-          "label": "Friend or Family",
-          "value": "friendOrFamily"
+          "value": "Friend or Family",
+          "target": "done"
         },
         {
-          "label": "Instagram",
-          "value": "instagram"
+          "value": "Instagram",
+          "target": "done"
         },
         {
-          "label": "Direct Mail or Package Insert",
-          "value": "directMail"
+          "value": "Direct Mail or Package Insert",
+          "target": "done"
         },
         {
-          "label": "Online TV or Streaming TV",
-          "value": "streamingTV"
+          "value": "Online TV or Streaming TV",
+          "target": "done"
         },
         {
-          "label": "TV",
-          "value": "tv"
+          "value": "TV",
+          "target": "done"
         },
         {
-          "label": "Radio",
-          "value": "radio"
+          "value": "Radio",
+          "target": "done"
         },
         {
-          "label": "Search Engine (Google, Bing, etc.)",
-          "value": "searchEngine"
+          "value": "Search Engine (Google, Bing, etc.)",
+          "target": "done"
         },
         {
-          "label": "Newspaper or Magazine",
-          "value": "newspaperOrMagazine"
+          "value": "Newspaper or Magazine",
+          "target": "done"
         },
         {
-          "label": "Facebook",
-          "value": "facebook"
+          "value": "Facebook",
+          "target": "done"
         },
         {
-          "label": "Blog Post or Website Review",
-          "value": "blogOrWebsite"
+          "value": "Blog Post or Website Review",
+          "target": "done"
         },
         {
-          "label": "Podcast",
-          "value": "podcast"
+          "value": "Podcast",
+          "target": "done"
         },
         {
-          "label": "Influencer",
-          "value": "influencer"
+          "value": "Influencer",
+          "target": "done"
         },
         {
-          "label": "Youtube",
-          "value": "youtube"
+          "value": "Youtube",
+          "target": "done"
         },
         {
-          "label": "Pinterest",
-          "value": "pinterest"
+          "value": "Pinterest",
+          "target": "done"
         },
         {
-          "label": "Other",
-          "value": "other"
+          "value": "Other",
+          "target": "done"
         }
-      ],
-      "navigation": {
-        "default": null
-      }
+      ]
     }
   ]
 }

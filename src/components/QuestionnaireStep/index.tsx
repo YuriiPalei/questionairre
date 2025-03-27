@@ -1,9 +1,9 @@
 "use client";
 
-import { ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { QuestionnaireStepType } from "@/types";
+import { OptionType, QuestionnaireStepType } from "@/types";
 import RadioGroup from "@/components/RadioGroup";
 import { setFormData } from "@/lib/slices/formData/actions";
 import { FormDataState } from "@/types/store";
@@ -11,32 +11,20 @@ import { getFormData, getFormValueById } from "@/lib/slices/formData/selectors";
 import configuration from "@/app/configuration.json";
 import styles from "./styles.module.css";
 
-const QuestionnaireStep = ({
-  id,
-  options,
-  question,
-  screenType,
-  navigation,
-  text,
-}: QuestionnaireStepType) => {
+const QuestionnaireStep = ({ id, options, question, screenType, text }: QuestionnaireStepType) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const selectedValue = useSelector((state: FormDataState) => getFormValueById(state, id));
   const questionnaireState = useSelector(getFormData);
 
   const isFirstStep = id === configuration.steps[0].id;
+  const formatterQuestion = question.replace("{gender}", questionnaireState["gender"]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setFormData({ id, value: event.target.value }));
+  const handleChange = (option: OptionType) => {
+    const { value, target } = option;
+    dispatch(setFormData({ id, value }));
 
-    const resolvedPath = navigation[event.target.value] ?? navigation.default;
-
-    if (resolvedPath === null) {
-      router.push("/done");
-      return;
-    }
-
-    router.push(`/${resolvedPath}`);
+    router.push(`/${target}`);
   };
 
   useEffect(() => {
@@ -47,10 +35,10 @@ const QuestionnaireStep = ({
 
   return (
     <section className={styles.container}>
-      <h1>{question}</h1>
+      <h1>{formatterQuestion}</h1>
       <p className={styles.container__text}>{text}</p>
       {screenType === "radioGroup" && (
-        <RadioGroup name={id} value={selectedValue} options={options ?? []} onChange={handleChange} />
+        <RadioGroup name={id} selectedValue={selectedValue} options={options ?? []} onChange={handleChange} />
       )}
     </section>
   );
