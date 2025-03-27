@@ -1,0 +1,19 @@
+.header {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  width: 100%;
+
+  @media (max-width: 768px) {
+    height: 44px;
+  }
+}
+
+.header__button_back {
+  padding: 5px 8px;
+  position: absolute;
+  left: 0;
+}
