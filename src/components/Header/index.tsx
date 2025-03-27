@@ -15,8 +15,14 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <IconButton src={arrowIcon} className={styles.header__button_back} alt="Back" onClick={handleBack} />
+      <IconButton
+        src={arrowIcon}
+        className={styles.header__icon_button__container}
+        alt="Back"
+        onClick={handleBack}
+      />
       <Image src="/logo.webp" alt="Logo" width={15} height={16} />
+      <span className={styles.header__icon_button__container} />
     </header>
   );
 };
