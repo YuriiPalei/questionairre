@@ -1,23 +1,8 @@
-"use client";
-
-import RadioGroup from "../components/RadioGroup";
-import styles from "./page.module.css";
-import { useState } from "react";
+import configuration from "@/const";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  const [selectedValue, setSelectedValue] = useState("male");
+  const { id } = configuration.steps[0];
 
-  return (
-    <div className={styles.page}>
-      <RadioGroup
-        label="Select your gender:"
-        value={selectedValue}
-        options={[
-          { value: "male", label: "Male" },
-          { value: "female", label: "Female" },
-        ]}
-        onChange={(event) => setSelectedValue(event.target.value)}
-      />
-    </div>
-  );
+  redirect(`/${id}`);
 }

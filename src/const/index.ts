@@ -1,0 +1,384 @@
+import { Questionnaire } from "@/types";
+
+const configuration: Readonly<Questionnaire> = Object.freeze({
+  id: "questionnaire",
+  title: "Questionnaire",
+  steps: [
+    {
+      id: "gender",
+      screenType: "radioGroup",
+      question: "Select your gender:",
+      options: [
+        {
+          label: "Female",
+          value: "female",
+        },
+        {
+          label: "Male",
+          value: "male",
+        },
+      ],
+      navigation: {
+        default: "relationshipStatus",
+      },
+    },
+    {
+      id: "relationshipStatus",
+      screenType: "radioGroup",
+      question: "So we can get to know you better, tell us about your relationship status.",
+      options: [
+        {
+          label: "Single",
+          value: "single",
+        },
+        {
+          label: "In a relationship",
+          value: "inRelationship",
+        },
+      ],
+      navigation: {
+        single: "singleParent",
+        inRelationship: "inRelationshipParent",
+      },
+    },
+    {
+      id: "singleParent",
+      screenType: "radioGroup",
+      question: "Are you a single parent?",
+      options: [
+        {
+          label: "Yes",
+          value: true,
+        },
+        {
+          label: "No",
+          value: false,
+        },
+      ],
+      navigation: {
+        default: "singleProblem",
+      },
+    },
+    {
+      id: "inRelationshipParent",
+      screenType: "radioGroup",
+      question: "Are you a parent?",
+      options: [
+        {
+          label: "Yes",
+          value: true,
+        },
+        {
+          label: "No",
+          value: false,
+        },
+      ],
+      navigation: {
+        default: "relationshipProblem",
+      },
+    },
+    {
+      id: "singleProblem",
+      screenType: "radioGroup",
+      question:
+        "Single {gender} {who have children (if have children)} need a slightly different approach to improve their relationship. Which statement best describes you?",
+      options: [
+        {
+          label: "I’m very unhappy with how things are going in my relationship",
+          value: "veryUnhappy",
+        },
+        {
+          label: "I’m unhappy with parts of my relationship, but some things are working well",
+          value: "unhappy",
+        },
+        {
+          label: "I’m generally happy in my relationship",
+          value: "happy",
+        },
+      ],
+      navigation: {
+        default: "isTendOverthink",
+      },
+    },
+    {
+      id: "relationshipProblem",
+      screenType: "radioGroup",
+      question:
+        "{Gender} {who have children (if have children)} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
+      options: [
+        {
+          label: "I was unhappy with low things were going in my relationship",
+          value: "1",
+        },
+        {
+          label: "I was unhappy with parts of my relationship, but some thing were working",
+          value: "2",
+        },
+        {
+          label: "I was generally happy with my relationship",
+          value: "3",
+        },
+        {
+          label: "I’ve never been in a relationship",
+          value: "4",
+        },
+      ],
+      navigation: {
+        default: "partnerType",
+      },
+    },
+    {
+      id: "isTendOverthink",
+      screenType: "radioGroup",
+      question: "Do you tend to overthink?",
+      options: [
+        {
+          label: "Yes",
+          value: "yes",
+        },
+        {
+          label: "No",
+          value: "no",
+        },
+      ],
+      navigation: {
+        yes: "mostImportant",
+        no: "emotionalControl",
+      },
+    },
+    {
+      id: "mostImportant",
+      screenType: "radioGroup",
+      question: "What is most important to you?",
+      options: [
+        {
+          label: "Success",
+          value: "success",
+        },
+        {
+          label: "Romance",
+          value: "romance",
+        },
+        {
+          label: "Stability",
+          value: "stability",
+        },
+        {
+          label: "Freedom",
+          value: "freedom",
+        },
+      ],
+      navigation: {
+        default: "whereYouHeardAboutUs",
+      },
+    },
+    {
+      id: "emotionalControl",
+      screenType: "radioGroup",
+      question: "Is emotional control tricky for you?",
+      options: [
+        {
+          label: "Yes",
+          value: "yes",
+        },
+        {
+          label: "Sometimes",
+          value: "sometimes",
+        },
+        {
+          label: "Rarely",
+          value: "rarely",
+        },
+        {
+          label: "Not at all",
+          value: "NotAtAll",
+        },
+      ],
+      navigation: {
+        default: "whereYouHeardAboutUs",
+      },
+    },
+    {
+      id: "partnerType",
+      screenType: "radioGroup",
+      question: "Is your partner an introvert or extrovert?",
+      options: [
+        {
+          label: "Introvert",
+          value: "introvert",
+        },
+        {
+          label: "Extrovert",
+          value: "extrovert",
+        },
+        {
+          label: "A bit of both",
+          value: "both",
+        },
+      ],
+      navigation: {
+        default: "partnerGender",
+      },
+    },
+    {
+      id: "aboutUs",
+      screenType: "text",
+      question: "So how does it work?",
+      options: [
+        {
+          label: "Next",
+          value: "next",
+        },
+      ],
+      navigation: {
+        default: "parentGender",
+      },
+    },
+    {
+      id: "partnerGender",
+      screenType: "radioGroup",
+      question: "What is your partner’s gender?",
+      options: [
+        {
+          label: "Female",
+          value: "female",
+        },
+        {
+          label: "Male",
+          value: "male",
+        },
+      ],
+      navigation: {
+        default: "sexPriority",
+      },
+    },
+    {
+      id: "sexPriority",
+      screenType: "radioGroup",
+      question: "Do you agree with the statement below?",
+      options: [
+        {
+          label: "Strongly agree",
+          value: "stronglyAgree",
+        },
+        {
+          label: "Agree",
+          value: "agree",
+        },
+        {
+          label: "Neutral",
+          value: "neutral",
+        },
+        {
+          label: "Disagee",
+          value: "disagree",
+        },
+        {
+          label: "Strongly disagree",
+          value: "stronglyDisagree",
+        },
+      ],
+      navigation: {
+        default: "relationshipGoal",
+      },
+    },
+    {
+      id: "relationshipGoal",
+      screenType: "radioGroup",
+      question: "When you think about your relationship goals, you feel...?",
+      options: [
+        {
+          label: "Optimistic! They are totally doable, with some guidance.",
+          value: "optimistic",
+        },
+        {
+          label: "Cautious. I’ve struggled before, but I’m hopeful.",
+          value: "cautious",
+        },
+        {
+          label: "I’m feeling a little anxious, honestly.",
+          value: "anxious",
+        },
+      ],
+      navigation: {
+        default: "whereYouHeardAboutUs",
+      },
+    },
+    {
+      id: "whereYouHeardAboutUs",
+      screenType: "radioGroup",
+      question: "Where did you hear about us?",
+      options: [
+        {
+          label: "Poster or Billboard",
+          value: "posterOrBillboard",
+        },
+        {
+          label: "Friend or Family",
+          value: "friendOrFamily",
+        },
+        {
+          label: "Instagram",
+          value: "instagram",
+        },
+        {
+          label: "Direct Mail or Package Insert",
+          value: "directMail",
+        },
+        {
+          label: "Online TV or Streaming TV",
+          value: "streamingTV",
+        },
+        {
+          label: "TV",
+          value: "tv",
+        },
+        {
+          label: "Radio",
+          value: "radio",
+        },
+        {
+          label: "Search Engine (Google, Bing, etc.)",
+          value: "searchEngine",
+        },
+        {
+          label: "Newspaper or Magazine",
+          value: "newspaperOrMagazine",
+        },
+        {
+          label: "Facebook",
+          value: "facebook",
+        },
+        {
+          label: "Blog Post or Website Review",
+          value: "blogOrWebsite",
+        },
+        {
+          label: "Podcast",
+          value: "podcast",
+        },
+        {
+          label: "Influencer",
+          value: "influencer",
+        },
+        {
+          label: "Youtube",
+          value: "youtube",
+        },
+        {
+          label: "Pinterest",
+          value: "pinterest",
+        },
+        {
+          label: "Other",
+          value: "other",
+        },
+      ],
+      navigation: {
+        default: "whereYouHeardAboutUs",
+      },
+    },
+  ],
+});
+
+export default configuration;

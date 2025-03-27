@@ -1,3 +1,3 @@
 import formDataSlice from ".";
 
-export const {} = formDataSlice.actions;
+export const { setFormData } = formDataSlice.actions;

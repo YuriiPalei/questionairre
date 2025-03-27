@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 type Props = {
   label: string;
-  value: string;
+  value: string | undefined;
   options: { value: string; label: string }[];
   name: string;
 } & Pick<InputHTMLAttributes<HTMLInputElement>, "onChange">;

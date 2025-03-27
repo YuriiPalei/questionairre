@@ -10,14 +10,14 @@ export type FormDataState = {
   inRelationship?: {
     relationshipProblem: string;
     partnerType: string;
-    parentGender: "male" | "female";
+    partnerGender: "male" | "female";
     sexPriority: string;
     relationshipGoal: string;
   };
 
   single?: {
     singleProblem: string;
-    isTendOverthink: boolean;
+    isTendOverthink: string;
 
     //isTendOverthink: true
     mostImportant: string;
