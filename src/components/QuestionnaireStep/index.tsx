@@ -9,8 +9,16 @@ import { setFormData } from "@/lib/slices/formData/actions";
 import { FormDataState } from "@/types/store";
 import { getFormData, getFormValueById } from "@/lib/slices/formData/selectors";
 import configuration from "@/app/configuration.json";
+import styles from "./styles.module.css";
 
-const QuestionnaireStep = ({ id, options, question, screenType, navigation }: QuestionnaireStepType) => {
+const QuestionnaireStep = ({
+  id,
+  options,
+  question,
+  screenType,
+  navigation,
+  text,
+}: QuestionnaireStepType) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const selectedValue = useSelector((state: FormDataState) => getFormValueById(state, id));
@@ -38,17 +46,13 @@ const QuestionnaireStep = ({ id, options, question, screenType, navigation }: Qu
   }, []);
 
   return (
-    <>
+    <section className={styles.container}>
+      <h1>{question}</h1>
+      <p className={styles.container__text}>{text}</p>
       {screenType === "radioGroup" && (
-        <RadioGroup
-          name={id}
-          label={question}
-          value={selectedValue}
-          options={options ?? []}
-          onChange={handleChange}
-        />
+        <RadioGroup name={id} value={selectedValue} options={options ?? []} onChange={handleChange} />
       )}
-    </>
+    </section>
   );
 };
 

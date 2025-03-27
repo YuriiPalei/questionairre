@@ -2,6 +2,7 @@ export type QuestionnaireStepType = {
   id: string;
   screenType: "radioGroup" | "text";
   question: string;
+  text?: string;
   options?: {
     value: string;
     label: string;
