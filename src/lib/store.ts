@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import formDataReducer from "@/lib/slices/formData/reducer";
+import formDataReducer from "@/lib/slices/questionnaire/reducer";
 
 const makeStore = () => {
   return configureStore({ reducer: formDataReducer });

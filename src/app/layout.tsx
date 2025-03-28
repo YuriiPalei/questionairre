@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import React from "react";
 import { Open_Sans } from "next/font/google";
 import StoreProvider from "@/components/StoreProvider";
-import Header from "@/components/Header";
 import configuration from "@/app/configuration.json";
 import "./globals.css";
 
@@ -24,10 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={openSans.className}>
-        <StoreProvider>
-          <Header />
-          {children}
-        </StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

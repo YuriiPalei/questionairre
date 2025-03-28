@@ -3,6 +3,8 @@ import QuestionnaireStep from "@/components/QuestionnaireStep";
 import configuration from "@/app/configuration.json";
 import { QuestionnaireStepType } from "@/types";
 import styles from "./page.module.css";
+import Header from "@/components/Header";
+import React from "react";
 
 export function generateStaticParams() {
   const steps = configuration.steps;
@@ -23,6 +25,7 @@ export default async function QuestionnairePage({ params }: { params: Promise<{ 
 
   return (
     <div className={styles.page}>
+      <Header />
       <QuestionnaireStep {...stepData} />
     </div>
   );

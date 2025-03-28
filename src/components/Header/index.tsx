@@ -1,17 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import IconButton from "@/components/IconButton";
-import arrowIcon from "@/app/assets/arrow-back.svg";
-import configuration from "@/app/configuration.json";
+import arrowIconBlack from "@/app/assets/arrow-black.svg";
+import arrowIconWhite from "@/app/assets/arrow-white.svg";
+import { useSelector } from "react-redux";
+import { getIsFirstStep } from "@/lib/slices/questionnaire/selectors";
 import styles from "./styles.module.css";
 
-const Header = () => {
-  const router = useRouter();
-  const { slug } = useParams<{ slug: string }>();
+type Props = {
+  inverted?: boolean;
+};
 
-  const isFirstStep = slug === configuration.steps[0].id;
+const Header = ({ inverted }: Props) => {
+  const router = useRouter();
+  const isFirstStep = useSelector(getIsFirstStep);
+
+  const arrowIcon = inverted ? arrowIconWhite : arrowIconBlack;
+  const logo = inverted ? "/logo-white.webp" : "/logo-black.webp";
 
   const handleBack = () => {
     router.back();
@@ -26,7 +33,7 @@ const Header = () => {
         alt="Back"
         onClick={handleBack}
       />
-      <Image src="/logo.webp" alt="Logo" width={15} height={16} />
+      <Image src={logo} alt="Logo" width={15} height={16} />
       <span className={styles.header__icon_button__container} />
     </header>
   );

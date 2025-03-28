@@ -9,4 +9,5 @@ export type QuestionnaireStepType = {
   question: string;
   text?: string;
   options?: OptionType[];
+  middleware?: string;
 };

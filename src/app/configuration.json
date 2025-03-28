@@ -65,7 +65,7 @@
     {
       "id": "singleProblem",
       "screenType": "radioGroup",
-      "question": "Single {gender} {who have children (if have children)} need a slightly different approach to improve their relationship. Which statement best describes you?",
+      "question": "Single {gender} {#hasChildren}who have children{/hasChildren} need a slightly different approach to improve their relationship. Which statement best describes you?",
       "options": [
         {
           "value": "I'm very unhappy with how things are going in my relationship",
@@ -84,7 +84,7 @@
     {
       "id": "relationshipProblem",
       "screenType": "radioGroup",
-      "question": "{Gender} {who have children (if have children)} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
+      "question": "{gender} {#hasChildren}who have children{/hasChildren} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
       "options": [
         {
           "value": "I was unhappy with low things were going in my relationship",
@@ -108,6 +108,7 @@
       "id": "isTendOverthink",
       "screenType": "radioGroup",
       "question": "Do you tend to overthink?",
+      "middleware": "about",
       "options": [
         {
           "value": "Yes",
@@ -115,7 +116,7 @@
         },
         {
           "value": "No",
-          "target": "mostImportant"
+          "target": "emotionalControl"
         }
       ]
     },
@@ -185,9 +186,10 @@
       ]
     },
     {
-      "id": "aboutUs",
+      "id": "about",
       "screenType": "text",
       "question": "So how does it work?",
+      "text": "We analyze hundreds of data points to create your unique astrological blueprint. This is combined with AI to tailor-make your astrological insights, based on your answers. We’re going to change your relationship with astrology.",
       "options": [
         {
           "value": "Next",
