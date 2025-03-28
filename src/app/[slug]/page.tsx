@@ -1,32 +1,71 @@
-import { notFound } from "next/navigation";
-import QuestionnaireStep from "@/components/QuestionnaireStep";
-import configuration from "@/app/configuration.json";
-import { QuestionnaireStepType } from "@/types";
+"use client";
+
+import { notFound, useParams, useRouter } from "next/navigation";
+import { OptionType } from "@/types";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { QuestionnaireState } from "@/types/store";
+import {
+  getAllAnswers,
+  getAnswerById,
+  getFirstStep,
+  getIsFirstStep,
+  getStepById,
+} from "@/lib/slices/questionnaire/selectors";
+import { formatTemplate } from "@/utils/formatting";
+import { setAnswer } from "@/lib/slices/questionnaire/actions";
+import RadioGroup from "@/components/RadioGroup";
 import styles from "./page.module.css";
-import Header from "@/components/Header";
-import React from "react";
 
-export function generateStaticParams() {
-  const steps = configuration.steps;
+const QuestionnairePage = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-  return steps.map((step) => ({
-    slug: step.id,
-  }));
-}
+  const pageData = useSelector((state: QuestionnaireState) => getStepById(state, slug));
 
-export default async function QuestionnairePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+  useEffect(() => {
+    if (!isFirstStep && Object.keys(questionnaireState).length === 0) {
+      router.push(`/${firstStepId}`);
+    }
+  }, []);
 
-  const stepData = configuration.steps.find((s) => s.id === slug) as QuestionnaireStepType | undefined;
-
-  if (!stepData) {
+  if (!pageData) {
     notFound();
   }
 
+  const { id, question, text, options, middleware, screenType } = pageData;
+
+  const selectedValue = useSelector((state: QuestionnaireState) => getAnswerById(state, id));
+  const questionnaireState = useSelector(getAllAnswers);
+  const { id: firstStepId } = useSelector(getFirstStep);
+  const isFirstStep = useSelector(getIsFirstStep);
+
+  const dynamicData = {
+    gender: questionnaireState["gender"]?.answer ?? "",
+    hasChildren:
+      (questionnaireState["inRelationshipParent"]?.answer ?? questionnaireState["singleParent"]?.answer) ===
+        "Yes" || false,
+  };
+
+  const formattedQuestion = formatTemplate(question, dynamicData);
+
+  const handleChange = (option: OptionType) => {
+    const { value, target } = option;
+    dispatch(setAnswer({ id, answer: value, question, nextStep: target }));
+
+    router.push(`/${middleware ?? target}`);
+  };
+
   return (
-    <div className={styles.page}>
-      <Header />
-      <QuestionnaireStep {...stepData} />
-    </div>
+    <section className={styles.container}>
+      <h1>{formattedQuestion}</h1>
+      <p className={styles.container__text}>{text}</p>
+      {screenType === "radioGroup" && (
+        <RadioGroup name={id} selectedValue={selectedValue} options={options ?? []} onChange={handleChange} />
+      )}
+    </section>
   );
-}
+};
+
+export default QuestionnairePage;

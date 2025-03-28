@@ -1,10 +1,9 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { getAllAnswers } from "@/lib/slices/questionnaire/selectors";
+import { getAllAnswers, getFirstStep } from "@/lib/slices/questionnaire/selectors";
 import { formatTemplate } from "@/utils/formatting";
 import React, { useEffect } from "react";
-import configuration from "@/app/configuration.json";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import styles from "./styles.module.css";
@@ -12,6 +11,7 @@ import styles from "./styles.module.css";
 const DonePage = () => {
   const router = useRouter();
   const answers = useSelector(getAllAnswers);
+  const { id } = useSelector(getFirstStep);
 
   const dynamicData = {
     gender: answers["gender"]?.answer ?? "",
@@ -21,7 +21,7 @@ const DonePage = () => {
 
   useEffect(() => {
     if (Object.keys(answers).length === 0) {
-      router.push(`/${configuration.steps[0].id}`);
+      router.push(`/${id}`);
     }
   }, []);
 

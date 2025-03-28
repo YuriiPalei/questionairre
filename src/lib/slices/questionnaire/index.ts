@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SetAnswerPayload } from "@/types/store";
+import { answerAdapter } from "@/lib/slices/questionnaire/adapters";
 import initialState from "./initialState";
 
 const questionnaireSlice = createSlice({
@@ -11,10 +12,7 @@ const questionnaireSlice = createSlice({
         payload: { id, answer, question, nextStep },
       } = action;
 
-      state.answers[id] = {
-        question,
-        answer,
-      };
+      answerAdapter.addOne(state.answers, { id, answer, question });
 
       state.previousStep = id;
       state.currentStep = nextStep;
