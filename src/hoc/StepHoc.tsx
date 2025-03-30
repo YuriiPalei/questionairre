@@ -3,20 +3,19 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getAnswersLength, getFirstStep, getIsFirstStep } from "@/lib/slices/questionnaire/selectors";
-import { useParams, useRouter } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { QuestionnaireState } from "@/types/store";
 
 const withEmptyAnswersHandling = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
   const WithEmptyAnswersHandling = (props: P) => {
     const { slug } = useParams<{ slug: string }>();
-    const router = useRouter();
     const answersLength = useSelector(getAnswersLength);
     const { id: firstStepId } = useSelector(getFirstStep);
     const isFirstStep = useSelector((state: QuestionnaireState) => getIsFirstStep(state, slug));
 
     useEffect(() => {
       if (!isFirstStep && !answersLength) {
-        router.push(`/${firstStepId}`);
+        redirect(`/${firstStepId}`);
       }
     }, []);
 
