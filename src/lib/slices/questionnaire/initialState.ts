@@ -1,9 +1,10 @@
 import { QuestionnaireState } from "@/types/store";
 import { answerAdapter, stepAdapter } from "@/lib/slices/questionnaire/adapters";
 import configuration from "@/app/configuration.json";
+import { QuestionnaireStepType } from "@/types";
 
 export const getEntitiesInitialState = () => ({
-  steps: stepAdapter.getInitialState(undefined, configuration.steps),
+  steps: stepAdapter.getInitialState(undefined, configuration.steps as QuestionnaireStepType[]),
   answers: answerAdapter.getInitialState(),
 });
 

@@ -7,7 +7,8 @@ export type QuestionnaireStepType = {
   id: string;
   screenType: "radioGroup" | "text";
   question: string;
+  options: OptionType[];
   text?: string;
-  options?: OptionType[];
   middleware?: string;
+  isMiddleware?: boolean;
 };

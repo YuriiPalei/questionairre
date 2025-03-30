@@ -18,9 +18,9 @@ body {
 
   width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
 
   & > header,div {
+    padding: 0 15px;
     margin: 0 auto;
   }
 }

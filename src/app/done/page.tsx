@@ -1,29 +1,14 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { getAllAnswers, getFirstStep } from "@/lib/slices/questionnaire/selectors";
-import { formatTemplate } from "@/utils/formatting";
-import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { getAllAnswers } from "@/lib/slices/questionnaire/selectors";
+import React from "react";
 import Header from "@/components/Header";
+import withEmptyAnswersHandling from "@/hoc/StepHoc";
 import styles from "./styles.module.css";
 
 const DonePage = () => {
-  const router = useRouter();
   const answers = useSelector(getAllAnswers);
-  const { id } = useSelector(getFirstStep);
-
-  const dynamicData = {
-    gender: answers["gender"]?.answer ?? "",
-    hasChildren:
-      (answers["inRelationshipParent"]?.answer ?? answers["singleParent"]?.answer) === "Yes" || false,
-  };
-
-  useEffect(() => {
-    if (Object.keys(answers).length === 0) {
-      router.push(`/${id}`);
-    }
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -33,7 +18,7 @@ const DonePage = () => {
       <div className={styles.container__results}>
         {Object.values(answers).map(({ answer, question }) => (
           <p key={question}>
-            <strong>{formatTemplate(question, dynamicData)}</strong>
+            <strong>{question}</strong>
             <br />
             {answer}
           </p>
@@ -43,4 +28,4 @@ const DonePage = () => {
   );
 };
 
-export default DonePage;
+export default withEmptyAnswersHandling(DonePage);

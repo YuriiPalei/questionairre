@@ -1,3 +1,3 @@
 import questionnaireSlice from ".";
 
-export const { setAnswer, setFirstStepId } = questionnaireSlice.actions;
+export const { setAnswer } = questionnaireSlice.actions;
