@@ -6,6 +6,7 @@
   position: relative;
   max-width: var(--max-content-width);
   width: 100%;
+  padding: 0 15px;
 
   @media (max-width: 768px) {
     height: 44px;
