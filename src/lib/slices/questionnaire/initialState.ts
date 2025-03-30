@@ -11,7 +11,7 @@ export const getEntitiesInitialState = () => ({
 const initialState: QuestionnaireState = {
   id: configuration.id,
   title: configuration.title,
-  currentStep: "",
+  currentStep: configuration.steps[0].id,
   previousStep: null,
   ...getEntitiesInitialState(),
 };

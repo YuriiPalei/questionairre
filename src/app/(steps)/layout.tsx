@@ -2,18 +2,16 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import usePageData from "@/hooks/usePageData";
 import classNames from "classnames";
 import Header from "@/components/Header";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { QuestionnaireState } from "@/types/store";
+import { getStepById } from "@/lib/slices/questionnaire/selectors";
 
-export default function StepsLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function StepsLayout({ children }: { children: React.ReactNode }) {
   const { slug } = useParams<{ slug: string }>();
-  const { isMiddleware } = usePageData(slug);
+  const { isMiddleware } = useSelector((state: QuestionnaireState) => getStepById(state, slug)) ?? {};
 
   return (
     <div

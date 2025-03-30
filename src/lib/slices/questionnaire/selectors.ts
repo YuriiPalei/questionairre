@@ -11,6 +11,14 @@ export const getStepById = (state: QuestionnaireState, id: string): Questionnair
 export const getFirstStep = (state: QuestionnaireState): QuestionnaireStepType =>
   stepsSelectors.selectAll(state.steps)[0];
 
+export const getIsFirstStep = (state: QuestionnaireState, slug: string): boolean => {
+  const { id } = getFirstStep(state);
+  return id === slug;
+};
+
+export const getAnswersLength = (state: QuestionnaireState): number =>
+  answersSelectors.selectTotal(state.answers);
+
 export const getAnswerById = (state: QuestionnaireState, id: string): string | undefined =>
   answersSelectors.selectById(state.answers, id)?.answer;
 
@@ -21,7 +29,5 @@ export const getAnswersByIds = (state: QuestionnaireState, ids: string[]): Recor
   const answers = answersSelectors.selectEntities(state.answers);
   return ids.reduce((acc, id) => ({ ...acc, [id]: answers[id] }), {});
 };
-
-export const getIsFirstStep = (state: QuestionnaireState): boolean => !state.previousStep;
 
 export const getCurrentStep = (state: QuestionnaireState): string => state.currentStep;

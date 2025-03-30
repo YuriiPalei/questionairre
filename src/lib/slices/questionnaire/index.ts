@@ -17,6 +17,9 @@ const questionnaireSlice = createSlice({
       state.previousStep = id;
       state.currentStep = nextStep;
     },
+    resetAnswers: (state) => {
+      state.answers = answerAdapter.getInitialState();
+    },
   },
 });
 

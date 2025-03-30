@@ -1,13 +1,24 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { getAllAnswers } from "@/lib/slices/questionnaire/selectors";
+import { getAllAnswers, getFirstStep } from "@/lib/slices/questionnaire/selectors";
 import withEmptyAnswersHandling from "@/hoc/StepHoc";
+import ButtonsGroup from "@/components/ButtonsGroup";
+import { useRouter } from "next/navigation";
+import { resetAnswers } from "@/lib/slices/questionnaire/actions";
 import styles from "./styles.module.css";
 
 const DonePage = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { id } = useSelector(getFirstStep);
   const answers = useSelector(getAllAnswers);
+
+  const handleClick = () => {
+    dispatch(resetAnswers());
+    router.push(`/${id}`);
+  };
 
   return (
     <section>
@@ -22,6 +33,10 @@ const DonePage = () => {
           </p>
         ))}
       </div>
+      <ButtonsGroup
+        options={[{ value: "Go though questionnaire again", target: id }]}
+        onClick={handleClick}
+      />
     </section>
   );
 };

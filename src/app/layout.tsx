@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  const steps = configuration.steps;
+  const stepsIds = [...configuration.steps.map((step) => step.id), "done"];
 
-  return steps.map((step) => ({
-    slug: step.id,
+  return stepsIds.map((slug) => ({
+    slug,
   }));
 }
 

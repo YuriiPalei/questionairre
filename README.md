@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [
+`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+
+npm install
+# or
+yarn install
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Questionnaire Configuration Documentation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The `configuration.json` file defines the structure and flow of your questionnaire application. It contains all
+questions, answer options, and navigation logic.
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```json
+{
+  "id": "questionnaire",
+  "title": "Questionnaire",
+  "steps": [
+    {
+      "id": "step_id",
+      "screenType": "radioGroup|text",
+      "question": "Question text",
+      "text": "Optional additional text",
+      "options": [
+        ...
+      ],
+      "isMiddleware": false,
+      "valueName": "optionalCustomValueName",
+      "dynamicData": [
+        "gender",
+        "hasChildren"
+      ],
+      "middleware": "middlewareStepId"
+    }
+  ]
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Properties
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Root Object
 
-## Deploy on Vercel
+- `id`: Unique identifier for the questionnaire
+- `title`: Title of the questionnaire
+- `steps`: Array of step objects that define each question
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Step Object
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `id`: Unique identifier for the step
+- `screenType`: Type of screen to display
+    - `radioGroup`: Multiple choice question
+    - `text`: Information screen with button(s)
+- `question`: The question or title text
+- `text`: (Optional) Additional descriptive text
+- `options`: Array of answer options
+- `isMiddleware`: (Optional) Whether this screen is an intermediate information screen. If true, considering inverted styles used
+- `valueName`: (Optional) Custom name for storing the answer value
+- `dynamicData`: (Optional) Array of variable names to use in templates
+- `middleware`: (Optional) ID of a middleware screen to show before next step
+
+### Option Object
+
+- `value`: Display text for the option
+- `target`: ID of the next step to navigate to
+- `booleanValue`: (Optional) Boolean value to store instead of text
+
+## Dynamic Content
+
+Use templates in questions with:
+
+- `{{variableName}}` - Inserts a variable value
+- `{{#condition}}Content if true{{/condition}}` - Conditional content
+
+## Example
+
+```json
+{
+  "id": "gender",
+  "screenType": "radioGroup",
+  "question": "Select your gender:",
+  "options": [
+    {
+      "value": "Female",
+      "target": "nextStepId"
+    },
+    {
+      "value": "Male",
+      "target": "nextStepId"
+    }
+  ]
+}
+```
+
+## Navigation Flow
+
+The questionnaire progresses based on the `target` property of each selected option, creating a dynamic path through the
+questions.
