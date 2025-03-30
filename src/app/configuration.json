@@ -35,37 +35,47 @@
     {
       "id": "singleParent",
       "screenType": "radioGroup",
+      "valueName": "hasChildren",
       "question": "Are you a single parent?",
       "options": [
         {
           "value": "Yes",
-          "target": "singleProblem"
+          "target": "singleProblem",
+          "booleanValue": true
         },
         {
           "value": "No",
-          "target": "singleProblem"
+          "target": "singleProblem",
+          "booleanValue": false
         }
       ]
     },
     {
       "id": "inRelationshipParent",
       "screenType": "radioGroup",
+      "valueName": "hasChildren",
       "question": "Are you a parent?",
       "options": [
         {
           "value": "Yes",
-          "target": "relationshipProblem"
+          "target": "relationshipProblem",
+          "booleanValue": true
         },
         {
           "value": "No",
-          "target": "relationshipProblem"
+          "target": "relationshipProblem",
+          "booleanValue": false
         }
       ]
     },
     {
       "id": "singleProblem",
       "screenType": "radioGroup",
-      "question": "Single {gender} {#hasChildren}who have children{/hasChildren} need a slightly different approach to improve their relationship. Which statement best describes you?",
+      "question": "Single {{gender}} {{#hasChildren}}who have children{{/hasChildren}} need a slightly different approach to improve their relationship. Which statement best describes you?",
+      "dynamicData": [
+        "gender",
+        "hasChildren"
+      ],
       "options": [
         {
           "value": "I'm very unhappy with how things are going in my relationship",
@@ -84,7 +94,11 @@
     {
       "id": "relationshipProblem",
       "screenType": "radioGroup",
-      "question": "{gender} {#hasChildren}who have children{/hasChildren} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
+      "question": "{{gender}} {{#hasChildren}}who have children{{/hasChildren}} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
+      "dynamicData": [
+        "gender",
+        "hasChildren"
+      ],
       "options": [
         {
           "value": "I was unhappy with low things were going in my relationship",
@@ -112,11 +126,13 @@
       "options": [
         {
           "value": "Yes",
-          "target": "mostImportant"
+          "target": "mostImportant",
+          "booleanValue": true
         },
         {
           "value": "No",
-          "target": "emotionalControl"
+          "target": "emotionalControl",
+          "booleanValue": false
         }
       ]
     },

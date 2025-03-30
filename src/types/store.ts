@@ -3,7 +3,7 @@ import { getEntitiesInitialState } from "@/lib/slices/questionnaire/initialState
 
 export type Store = ReturnType<typeof makeStore>;
 
-export type Answer = { id: string; question: string; answer: string };
+export type Answer = { id: string; question: string; answer: string; booleanValue?: boolean };
 
 export type QuestionnaireState = {
   id: string;
@@ -12,4 +12,10 @@ export type QuestionnaireState = {
   previousStep: string | null;
 } & ReturnType<typeof getEntitiesInitialState>;
 
-export type SetAnswerPayload = { id: string; question: string; answer: string; nextStep: string };
+export type SetAnswerPayload = {
+  id: string;
+  question: string;
+  answer: string;
+  nextStep: string;
+  booleanValue?: boolean;
+};

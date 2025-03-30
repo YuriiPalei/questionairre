@@ -6,13 +6,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import { QuestionnaireState } from "@/types/store";
-import { getAllAnswers, getAnswerById, getCurrentStep } from "@/lib/slices/questionnaire/selectors";
-import { formatTemplate } from "@/utils/formatting";
+import { getAnswerById, getCurrentStep } from "@/lib/slices/questionnaire/selectors";
 import { setAnswer } from "@/lib/slices/questionnaire/actions";
 import RadioGroup from "@/components/RadioGroup";
 import Header from "@/components/Header";
 import usePageData from "@/hooks/usePageData";
 import withEmptyAnswersHandling from "@/hoc/StepHoc";
+import useFormatting from "@/hooks/useFormatting";
 import styles from "./page.module.css";
 
 const QuestionnairePage = () => {
@@ -20,20 +20,12 @@ const QuestionnairePage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { id, question, text, options, middleware, screenType, isMiddleware } = usePageData(slug);
+  const { id, question, text, options, middleware, screenType, isMiddleware, valueName, dynamicData } =
+    usePageData(slug);
+  const formattedQuestion = useFormatting({ template: question, dynamicData: dynamicData ?? [] });
 
   const selectedValue = useSelector((state: QuestionnaireState) => getAnswerById(state, id));
-  const questionnaireState = useSelector(getAllAnswers);
   const currentStep = useSelector(getCurrentStep);
-
-  const dynamicData = {
-    gender: questionnaireState["gender"]?.answer ?? "",
-    hasChildren:
-      (questionnaireState["inRelationshipParent"]?.answer ?? questionnaireState["singleParent"]?.answer) ===
-        "Yes" || false,
-  };
-
-  const formattedQuestion = formatTemplate(question, dynamicData);
 
   const handleChange = (option: OptionType) => {
     if (isMiddleware) {
@@ -41,8 +33,17 @@ const QuestionnairePage = () => {
       return;
     }
 
-    const { value, target } = option;
-    dispatch(setAnswer({ id, answer: value, question: formattedQuestion, nextStep: target }));
+    const { value, target, booleanValue } = option;
+
+    dispatch(
+      setAnswer({
+        id: valueName ?? id,
+        question: formattedQuestion,
+        answer: value,
+        booleanValue,
+        nextStep: target,
+      }),
+    );
     router.push(`/${middleware ?? target}`);
   };
 

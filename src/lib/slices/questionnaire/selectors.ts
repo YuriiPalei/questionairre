@@ -14,11 +14,13 @@ export const getFirstStep = (state: QuestionnaireState): QuestionnaireStepType =
 export const getAnswerById = (state: QuestionnaireState, id: string): string | undefined =>
   answersSelectors.selectById(state.answers, id)?.answer;
 
-export const getAnswersLength = (state: QuestionnaireState): number =>
-  answersSelectors.selectTotal(state.answers);
-
 export const getAllAnswers = (state: QuestionnaireState): Record<string, Answer> =>
   answersSelectors.selectEntities(state.answers);
+
+export const getAnswersByIds = (state: QuestionnaireState, ids: string[]): Record<string, Answer> => {
+  const answers = answersSelectors.selectEntities(state.answers);
+  return ids.reduce((acc, id) => ({ ...acc, [id]: answers[id] }), {});
+};
 
 export const getIsFirstStep = (state: QuestionnaireState): boolean => !state.previousStep;
 

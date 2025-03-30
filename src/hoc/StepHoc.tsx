@@ -6,7 +6,7 @@ import { getAllAnswers, getFirstStep } from "@/lib/slices/questionnaire/selector
 import { useRouter } from "next/navigation";
 
 const withEmptyAnswersHandling = (WrappedComponent: React.ComponentType) => {
-  const WithEmptyAnswersHandling = (props: Record<string, unknown>) => {
+  const WithEmptyAnswersHandling = (props) => {
     const router = useRouter();
     const questionnaireState = useSelector(getAllAnswers);
     const { id: firstStepId } = useSelector(getFirstStep);

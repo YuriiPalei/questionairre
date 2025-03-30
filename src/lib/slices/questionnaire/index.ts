@@ -9,10 +9,10 @@ const questionnaireSlice = createSlice({
   reducers: {
     setAnswer: (state, action: PayloadAction<SetAnswerPayload>) => {
       const {
-        payload: { id, answer, question, nextStep },
+        payload: { id, answer, question, nextStep, booleanValue },
       } = action;
 
-      answerAdapter.addOne(state.answers, { id, answer, question });
+      answerAdapter.setOne(state.answers, { id, answer, question, booleanValue });
 
       state.previousStep = id;
       state.currentStep = nextStep;
