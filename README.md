@@ -66,7 +66,7 @@ questions, answer options, and navigation logic.
     - `text`: Information screen with button(s)
 - `question`: The question or title text
 - `text`: (Optional) Additional descriptive text
-- `options`: Array of answer options
+- `options`: Array of answer options, or buttons for other types of screens
 - `isMiddleware`: (Optional) Whether this screen is an intermediate information screen. If true, considering inverted styles used
 - `valueName`: (Optional) Custom name for storing the answer value
 - `dynamicData`: (Optional) Array of variable names to use in templates

@@ -6,7 +6,7 @@ export type OptionType = {
 
 export type QuestionnaireStepType = {
   id: string;
-  screenType: "radioGroup" | "text";
+  screenType: "radioGroup" | "text" | "dateInput";
   question: string;
   options: OptionType[];
   text?: string;

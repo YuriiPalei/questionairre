@@ -28,7 +28,7 @@ const QuestionnairePage = () => {
   } = usePageData(slug);
 
   const formattedQuestion = useFormatting({ template: question, dynamicData: dynamicData ?? [] });
-  const selectedValue = useSelector((state: QuestionnaireState) => getAnswerById(state, id));
+  const selectedValue = useSelector((state: QuestionnaireState) => getAnswerById(state, valueName ?? id));
   const currentStep = useSelector(getCurrentStep);
 
   const { handleSelect } = useQuestionnaireHandler({
@@ -44,10 +44,12 @@ const QuestionnairePage = () => {
     <section className={styles.step}>
       <h1>{formattedQuestion}</h1>
       {text && <p className={styles.step__text}>{text}</p>}
-      {screenType === "radioGroup" && (
+      {screenType === "radioGroup" ? (
         <RadioGroup name={id} selectedValue={selectedValue} options={options ?? []} onChange={handleSelect} />
+      ) : (
+        <ButtonsGroup options={options} onClick={handleSelect} />
       )}
-      {screenType === "text" && <ButtonsGroup options={options} onClick={handleSelect} />}
+      {/* ...might be enhanced with other screens types line DateInput */}
     </section>
   );
 };
